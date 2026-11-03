@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <title>WALLIX | 4K Wallpapers</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comfortaa', sans-serif;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #000;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #2c2c2c;
+      border-radius: 50px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgb(255, 0, 0);
+      border-radius: 50px;
+    }
+
+    .logo {
+      height: 50px;
+      margin: 0;
+      margin-right: 50px;
+      border-radius: 50%;
+    }
+
+    .logo2 {
+      width: 100% !important;
+      border-radius: 50%;
+    }
+
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: rgb(255, 0, 0);
+      padding: 15px;
+      margin: 16px;
+      margin-bottom: 0;
+    }
+
+    .navbar .link {
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      position: relative;
+      display: inline-block;
+    }
+
+    .link::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 4px;
+      scale: 0 1;
+      transform-origin: right;
+      transition: scale 0.25s;
+    }
+
+    .link:hover::before {
+      scale: 1;
+      transform-origin: left;
+    }
+
+    .list {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin-right: 16px;
+    }
+
+    #toggler,
+    .navbar label {
+      display: none;
+    }
+
+    @media screen and (max-width: 600px) {
+      .menu {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      .navbar {
+        border-radius: 0;
+      }
+
+      .list {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .navbar label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      #toggler:checked~.menu {
+        max-height: 100%;
+      }
+
+      i {
+        color: white;
+      }
+    }
+
+    .home-section {
+      background: url(./cover.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 80vh;
+      margin: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0;
+      gap: 40px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .home-section {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .sec2 {
+      display: grid;
+      place-items: center;
+      width: 50%;
+    }
+
+    .sec2 img {
+      width: 90%;
+    }
+
+    .sec1 {
+      color: rgb(255, 255, 255);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      width: 50%;
+    }
+
+    .title {
+      font-size: 3rem;
+      background-image: linear-gradient(rgb(255, 0, 0), rgb(255, 0, 64));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 4px 4px 20px rgba(255, 0, 0, 0.486);
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    .glow-on-hover {
+      font-size: larger;
+      width: 220px;
+      height: 50px;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      background: #222222;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      border-radius: 10px;
+    }
+
+    .glow-on-hover:before {
+      content: '';
+      background: linear-gradient(60deg, #5900ff, #8c00ff, #ff00f2, #ff004c, #ff0000, #ff004c, #ff00f2, #8c00ff, #5900ff);
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      background-size: 400%;
+      z-index: -1;
+      filter: blur(5px);
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      animation: glowing 20s linear infinite;
+      opacity: 0;
+      transition: opacity .3s ease-in-out;
+      border-radius: 10px;
+    }
+
+    .glow-on-hover:active {
+      color: #000;
+    }
+
+    .glow-on-hover:active:after {
+      background: transparent;
+    }
+
+    .glow-on-hover:hover:before {
+      opacity: 1;
+    }
+
+    .glow-on-hover:after {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      left: 0;
+      top: 0;
+      border-radius: 10px;
+    }
+
+    @keyframes glowing {
+      0% { background-position: 0 0; }
+      50% { background-position: 400% 0; }
+      100% { background-position: 0 0; }
+    }
+
+    .walls {
+      background: transparent;
+      margin-bottom: 100px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .title2 {
+      margin: 50px;
+      font-size: 100px;
+      background-image: linear-gradient(rgb(255, 0, 0), rgb(255, 0, 76));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 4px 4px 20px rgba(255, 0, 0, 0.486);
+    }
+
+    @media screen and (max-width: 600px) {
+      .title2 {
+        font-size: xx-large;
+      }
+    }
+
+    figure {
+      position: relative;
+      width: 350px;
+      height: 250px;
+      background-color: #000;
+      overflow: hidden;
+      flex: 1 1 300px;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    figure figcaption::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 2px solid #fff;
+      opacity: 0;
+      scale: 1.25;
+      transition: opacity 0.25s, scale 0.25s;
+    }
+
+    figure:hover figcaption::before {
+      opacity: 1;
+      scale: 1;
+    }
+
+    figure img {
+      position: relative;
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      scale: 1.15;
+      transition: opacity 0.25s, scale 0.35s;
+    }
+
+    figure:hover img {
+      opacity: 0.5;
+      scale: 1;
+    }
+
+    figure figcaption {
+      position: absolute;
+      inset: 0;
+      padding: 50px;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 15px;
+      justify-content: center;
+    }
+
+    figure h2 {
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .container {
+      margin: 20px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .contact {
+      margin-top: 20px;
+      margin: 16px;
+    }
+
+    .contact-cont {
+      min-height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-page {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .contact-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .contact-box {
+      background-color: #ffffff12;
+      padding: 20px;
+      border-radius: 3px;
+      border-left: 2px solid rgb(255, 0, 0);
+      width: 100%;
+      max-width: 360px;
+      margin-bottom: 40px;
+    }
+
+    .box-title {
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .box-icon {
+      background: rgba(255, 251, 0, 0);
+      width: 30px;
+      height: 30px;
+      color: rgb(255, 0, 0);
+      text-align: center;
+      line-height: 30px;
+      font-size: 18px;
+    }
+
+    .box-content {
+      color: #858585;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    input, textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      background: #ffffff12;
+      padding: 14px;
+      color: #fff;
+      border: 0;
+      caret-color: rgb(255, 0, 0);
+    }
+
+    textarea {
+      resize: none;
+      height: 160px;
+    }
+
+    input::placeholder {
+      color: #888;
+    }
+
+    .nameInput, .emailInput {
+      width: calc(50% - 5px);
+    }
+
+    .nameInput { border-top-left-radius: 10px; }
+    .emailInput { border-top-right-radius: 10px; }
+
+    .sendbtn {
+      background-color: rgb(255, 0, 0);
+      border-radius: 0 0 10px 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: .3s linear;
+    }
+
+    .sendbtn:hover {
+      opacity: .7;
+    }
+
+    @media screen and (max-width: 1200px) {
+      .contact-box { max-width: 100%; }
+      .nameInput, .emailInput {
+        width: 100%;
+        border-radius: 0;
+      }
+      .nameInput { border-radius: 10px 10px 0 0; }
+    }
+
+    .about-section {
+      height: 80vh;
+      display: flex;
+      background: rgb(255, 0, 0);
+      margin: 16px;
+    }
+
+    .cont {
+      width: 50%;
+      display: grid;
+      place-items: center;
+      justify-content: center;
+    }
+
+    .social-menu {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .social-menu ul {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    .social-menu ul li {
+      list-style: none;
+      margin: 0 15px;
+    }
+
+    .social-menu ul li .fa {
+      font-size: 30px;
+      line-height: 60px;
+      transition: .3s;
+      color: rgb(255, 0, 0);
+    }
+
+    .social-menu ul li a:hover > .fa { color: #fff; }
+
+    .social-menu ul li a {
+      position: relative;
+      display: block;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #fff;
+      text-align: center;
+      transition: .6s;
+      box-shadow: 0 5px 4px rgba(0, 0, 0, .5);
+    }
+
+    .social-menu ul li a:hover {
+      transform: translate(0, -10%);
+    }
+
+    .social-menu ul li:nth-child(1) a:hover { background-color: rgb(0, 0, 0); }
+    .social-menu ul li:nth-child(2) a:hover { background: linear-gradient(45deg, rgb(255, 115, 0), rgb(255, 0, 149)); }
+    .social-menu ul li:nth-child(3) a:hover { background-color: #007ec2; }
+    .social-menu ul li:nth-child(4) a:hover { background-color: #e90000; }
+
+    .min { width: 100%; }
+
+    p {
+      color: #f1f1f1;
+      width: 70%;
+    }
+
+    .t {
+      text-decoration: none;
+      color: white;
+      z-index: 100;
+    }
+
+    .t:hover { font-weight: bolder; }
+
+    /* Render optimization for long scrolling galleries */
+    .auto {
+      width: 100%;
+      padding: 20px;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      transition: all .5s;
+      content-visibility: auto;
+      contain-intrinsic-size: 1000px;
+    }
+
+    .auto:hover > :not(:hover) {
+      filter: brightness(0.6);
+      transition: all .5s;
+    }
+
+    .box {
+      flex: 1 1 200px;
+      padding: 10px;
+      margin: 10px;
+      box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+      transition: .5s;
+      aspect-ratio: 16 / 9;
+    }
+
+    .box:hover {
+      transform: scale(1.2);
+      z-index: 2;
+    }
+
+    .is {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+
+    .button { margin-bottom: 40px; }
+
+    .btn {
+      text-decoration: none;
+      color: rgb(255, 0, 0);
+      border: 1px solid rgb(255, 0, 0);
+      overflow: hidden;
+      position: relative;
+      transition: color .5s .25s;
+      padding: 7px;
+    }
+
+    .btn::before, .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background-color: rgb(255, 0, 0);
+      z-index: -1;
+      transform: scaleX(0);
+      transition: transform .5s cubic-bezier(.785, .135, .15, .86);
+    }
+
+    .btn::before { left: 0; transform-origin: left; }
+    .btn::after { right: 0; transform-origin: right; }
+
+    .btn:hover::before, .btn:hover::after { transform: scale(1); }
+    .btn:hover { color: rgb(32, 32, 32); transition-delay: .1s; }
+
+    @media screen and (max-width: 600px) {
+      .about-section {
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        background: rgb(255, 0, 0);
+        margin: 16px;
+        justify-content: center;
+        align-items: center;
+      }
+      .cont, .social-menu { width: 100%; }
+      .social-menu ul { gap: 0; }
+    }
+
+    .h3 {
+      margin-inline: 50px;
+      text-align: center;
+      font-size: xx-large;
+      background-image: linear-gradient(rgb(255, 0, 0), rgb(255, 0, 64));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 4px 4px 20px rgba(255, 0, 0, 0.486);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <img src="./logo.png" alt="Wallix Logo" class="logo" fetchpriority="high" />
+      <input type="checkbox" id="toggler" />
+      <label for="toggler"><i class="fa fa-list"></i></label>
+      <div class="menu">
+        <ul class="list">
+          <li><a class="link" href="#">Home.</a></li>
+          <li><a class="link" href="#walls">Wallpapers.</a></li>
+          <li><a class="link" href="#contact">Contact.</a></li>
+          <li><a class="link" href="#about">About.</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article class="home-section">
+      <div class="sec2">
+        <img src="./logo.png" alt="Wallix Logo" class="logo2" fetchpriority="high" />
+      </div>
+      <div class="sec1">
+        <h1 class="title">WALLIX.</h1>
+        <h3>4K Wallpapers</h3>
+        <a href="#walls"><button class="glow-on-hover" type="button">Explore Walls</button></a>
+      </div>
+    </article>
+  </header>
+
+  <main>
+    <article id="walls" class="walls">
+      <div class="text-center">
+        <h1 class="title2">Wallpapers</h1>
+      </div>
+      <div class="container">
+        <figure>
+          <img src="./walls/art/0.jpg" alt="Art Wallpapers Category" loading="lazy" decoding="async" />
+          <figcaption>
+            <a href="#art" class="t"><h2>Art</h2></a>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./walls/cars/0.jpg" alt="Cars Wallpapers Category" loading="lazy" decoding="async" />
+          <figcaption>
+            <a href="#cars" class="t"><h2>Cars</h2></a>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./walls/games/0.png" alt="Games Wallpapers Category" loading="lazy" decoding="async" />
+          <figcaption>
+            <a href="#games" class="t"><h2>Games</h2></a>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./walls/space/0.jpg" alt="Space Wallpapers Category" loading="lazy" decoding="async" />
+          <figcaption>
+            <a href="#space" class="t"><h2>Space</h2></a>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./walls/nature/0.jpg" alt="Nature Wallpapers Category" loading="lazy" decoding="async" />
+          <figcaption>
+            <a href="#nature" class="t"><h2>Nature</h2></a>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./walls/dark/0.JPG" alt="Dark Wallpapers Category" loading="lazy" decoding="async" />
+          <figcaption>
+            <a href="#dark" class="t"><h2>Dark</h2></a>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./walls/hack/0.png" alt="Hack Wallpapers Category" loading="lazy" decoding="async" />
+          <figcaption>
+            <a href="#hack" class="t"><h2>Hack</h2></a>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="./walls/animals/0.jpg" alt="Animals Wallpapers Category" loading="lazy" decoding="async" />
+          <figcaption>
+            <a href="#animals" class="t"><h2>Animals</h2></a>
+          </figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="content">
+      <h3 class="h3">Cars</h3>
+      <section id="cars" class="auto">
+        <div class="box"><img src="./walls/cars/1.jpg" alt="Cars Wallpaper 1" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/2.jpg" alt="Cars Wallpaper 2" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/3.jpg" alt="Cars Wallpaper 3" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/4.jpg" alt="Cars Wallpaper 4" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/5.jpg" alt="Cars Wallpaper 5" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/6.jpeg" alt="Cars Wallpaper 6" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/7.jpg" alt="Cars Wallpaper 7" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/8.jpg" alt="Cars Wallpaper 8" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/9.jpg" alt="Cars Wallpaper 9" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/10.jpg" alt="Cars Wallpaper 10" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/11.jpg" alt="Cars Wallpaper 11" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/12.jpg" alt="Cars Wallpaper 12" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/13.jpeg" alt="Cars Wallpaper 13" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/14.jpg" alt="Cars Wallpaper 14" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/cars/15.jpg" alt="Cars Wallpaper 15" loading="lazy" decoding="async" class="is"></div>
+      </section>
+
+      <h3 class="h3">Nature</h3>
+      <section id="nature" class="auto">
+        <div class="box"><img src="./walls/nature/1.jpg" alt="Nature Wallpaper 1" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/nature/2.jpg" alt="Nature Wallpaper 2" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/nature/3.jpg" alt="Nature Wallpaper 3" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/nature/4.jpg" alt="Nature Wallpaper 4" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/nature/5.jpg" alt="Nature Wallpaper 5" loading="lazy" decoding="async" class="is"></div>
+      </section>
+
+      <h3 class="h3">Art</h3>
+      <section id="art" class="auto">
+        <div class="box"><img src="./walls/art/1.PNG" alt="Art Wallpaper 1" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/2.PNG" alt="Art Wallpaper 2" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/3.jpg" alt="Art Wallpaper 3" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/4.png" alt="Art Wallpaper 4" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/5.jpg" alt="Art Wallpaper 5" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/6.jpg" alt="Art Wallpaper 6" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/7.jpg" alt="Art Wallpaper 7" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/8.jpg" alt="Art Wallpaper 8" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/9.jpg" alt="Art Wallpaper 9" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/art/10.jpg" alt="Art Wallpaper 10" loading="lazy" decoding="async" class="is"></div>
+      </section>
+
+      <h3 class="h3">Space</h3>
+      <section id="space" class="auto">
+        <div class="box"><img src="./walls/space/1.jpg" alt="Space Wallpaper 1" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/2.jpg" alt="Space Wallpaper 2" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/3.jpg" alt="Space Wallpaper 3" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/4.jpg" alt="Space Wallpaper 4" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/5.jpg" alt="Space Wallpaper 5" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/6.jpg" alt="Space Wallpaper 6" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/7.jpg" alt="Space Wallpaper 7" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/8.jpg" alt="Space Wallpaper 8" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/9.jpg" alt="Space Wallpaper 9" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/space/10.jpg" alt="Space Wallpaper 10" loading="lazy" decoding="async" class="is"></div>
+      </section>
+
+      <h3 class="h3">Animals</h3>
+      <section id="animals" class="auto">
+        <div class="box"><img src="./walls/animals/1.jpg" alt="Animals Wallpaper 1" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/animals/2.jpg" alt="Animals Wallpaper 2" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/animals/3.jpg" alt="Animals Wallpaper 3" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/animals/4.jpg" alt="Animals Wallpaper 4" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/animals/5.jpg" alt="Animals Wallpaper 5" loading="lazy" decoding="async" class="is"></div>
+      </section>
+
+      <h3 class="h3">Games</h3>
+      <section id="games" class="auto">
+        <div class="box"><img src="./walls/games/1.JPG" alt="Games Wallpaper 1" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/2.jpg" alt="Games Wallpaper 2" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/3.jpg" alt="Games Wallpaper 3" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/4.png" alt="Games Wallpaper 4" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/5.jpg" alt="Games Wallpaper 5" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/6.png" alt="Games Wallpaper 6" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/7.jpg" alt="Games Wallpaper 7" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/8.jpg" alt="Games Wallpaper 8" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/9.jpg" alt="Games Wallpaper 9" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/games/10.jpg" alt="Games Wallpaper 10" loading="lazy" decoding="async" class="is"></div>
+      </section>
+
+      <h3 class="h3">Dark</h3>
+      <section id="dark" class="auto">
+        <div class="box"><img src="./walls/dark/1.JPG" alt="Dark Wallpaper 1" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/2.JPG" alt="Dark Wallpaper 2" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/3.JPG" alt="Dark Wallpaper 3" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/4.jpg" alt="Dark Wallpaper 4" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/5.JPG" alt="Dark Wallpaper 5" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/6.JPG" alt="Dark Wallpaper 6" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/7.JPG" alt="Dark Wallpaper 7" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/8.JPG" alt="Dark Wallpaper 8" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/9.JPG" alt="Dark Wallpaper 9" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/dark/10.JPG" alt="Dark Wallpaper 10" loading="lazy" decoding="async" class="is"></div>
+      </section>
+
+      <h3 class="h3">Hack</h3>
+      <section id="hack" class="auto">
+        <div class="box"><img src="./walls/hack/1.jpg" alt="Hack Wallpaper 1" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/2.jpg" alt="Hack Wallpaper 2" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/3.jpg" alt="Hack Wallpaper 3" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/4.jpg" alt="Hack Wallpaper 4" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/5.jpg" alt="Hack Wallpaper 5" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/6.jpg" alt="Hack Wallpaper 6" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/7.jpg" alt="Hack Wallpaper 7" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/8.jpg" alt="Hack Wallpaper 8" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/9.jpg" alt="Hack Wallpaper 9" loading="lazy" decoding="async" class="is"></div>
+        <div class="box"><img src="./walls/hack/10.jpg" alt="Hack Wallpaper 10" loading="lazy" decoding="async" class="is"></div>
+      </section>
+
+      <div class="text-center button">
+        <a href="#walls" class="btn">GO BACK UP</a>
+      </div>
+    </article>
+
+    <article id="contact" class="contact">
+      <div class="contact-cont">
+        <div class="contact-page">
+          <div class="text-center">
+            <h1 class="title2">Contact</h1>
+          </div>
+
+          <div class="contact-boxes">
+            <div class="contact-box">
+              <h2 class="box-title">
+                <i class="box-icon fa fa-home"></i> Location
+              </h2>
+              <div class="box-content">Dalian city, China</div>
+            </div>
+            <div class="contact-box">
+              <h2 class="box-title">
+                <i class="box-icon fa fa-envelope"></i> Email
+              </h2>
+              <div class="box-content">example@gmail.com</div>
+            </div>
+            <div class="contact-box">
+              <h2 class="box-title">
+                <i class="box-icon fa fa-phone"></i> Phone
+              </h2>
+              <div class="box-content">+86 123 4567 890</div>
+            </div>
+          </div>
+
+          <form action="#" class="contact-form">
+            <input type="text" class="nameInput" placeholder="Name" />
+            <input type="email" class="emailInput" placeholder="Email" />
+            <input type="text" class="subjectInput" placeholder="Number" />
+            <input type="text" class="subjectInput" placeholder="Subject" />
+            <textarea class="msgArea" placeholder="Your Message"></textarea>
+            <input class="sendbtn" type="submit" value="Send Message" />
+          </form>
+        </div>
+      </div>
+    </article>
+
+    <article id="about" class="about">
+      <div class="text-center">
+        <h1 class="title2">About</h1>
+      </div>
+      <div class="about-section">
+        <div class="cont">
+          <img class="min" src="./logo.png" alt="Wallix Logo" loading="lazy" />
+        </div>
+        <div class="social-menu">
+          <p>For more information visit our social media :</p>
+          <ul class="lister">
+            <li><a href="https://github.com/THE12X" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
+            <li><a href="https://www.instagram.com/" aria-label="Instagram"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/mohamedkammou/" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="mailto:example@gmail.com" aria-label="Google"><i class="fa fa-google"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </main>
+</body>
+
+</html>
