@@ -134,11 +134,10 @@
     }
 
     .home-section {
-      background: url("cover.jpg");
+      background-image: url("cover.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-      /*background-attachment: fixed;*/
       height: 80vh;
       margin: 16px;
       display: flex;
@@ -530,7 +529,6 @@
 
     .t:hover { font-weight: bolder; }
 
-    /* Render optimization for long scrolling galleries */
     .auto {
       width: 100%;
       padding: 20px;
@@ -556,6 +554,8 @@
       box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
       transition: .5s;
       aspect-ratio: 16 / 9;
+      cursor: pointer;
+      position: relative;
     }
 
     .box:hover {
@@ -844,7 +844,7 @@
               <h2 class="box-title">
                 <i class="box-icon fa fa-envelope"></i> Email
               </h2>
-              <div class="box-content">example@gmail.com</div>
+              <div class="box-content">mrxff81@gmail.com</div>
             </div>
             <div class="contact-box">
               <h2 class="box-title">
@@ -880,11 +880,47 @@
             <li><a href="https://github.com/THE12X" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
             <li><a href="https://www.instagram.com/" aria-label="Instagram"><i class="fa fa-instagram"></i></a></li>
             <li><a href="https://www.linkedin.com/in/mohamedkammou/" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="mailto:example@gmail.com" aria-label="Google"><i class="fa fa-google"></i></a></li>
+            <li><a href="mailto:mrxff81@gmail.com" aria-label="Google"><i class="fa fa-google"></i></a></li>
           </ul>
         </div>
       </div>
     </article>
   </main>
+
+  <script>
+    async function downloadWallpaper(imgElement) {
+      const srcUrl = imgElement.src;
+      // Upgrade preview resolution (w=400) to full HD (w=1920) upon download
+      const highResUrl = srcUrl.replace('w=400&q=50', 'w=1920&q=90');
+      const altText = imgElement.alt || 'wallpaper';
+      const fileName = altText.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.jpg';
+
+      try {
+        const response = await fetch(highResUrl);
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+      } catch (err) {
+        window.open(highResUrl, '_blank');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.auto .box').forEach(box => {
+        box.addEventListener('click', () => {
+          const img = box.querySelector('img');
+          if (img) downloadWallpaper(img);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
