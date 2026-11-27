@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="icon" type="image/x-icon" href="icon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <title>WALLIX | 4K Wallpapers</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <img src="./logo.png" alt="Wallix Logo" class="logo" fetchpriority="high" />
+      <input type="checkbox" id="toggler" />
+      <label for="toggler"><i class="fa fa-list"></i></label>
+      <div class="menu">
+        <ul class="list">
+          <li><a class="link" href="#">Home.</a></li>
+          <li><a class="link" href="#walls">Categories.</a></li>
+          <li><a class="link" href="#contact">Contact.</a></li>
+          <li><a class="link" href="#about">About.</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article class="home-section">
+      <div class="sec2">
+        <img src="./logo.png" alt="Wallix Logo" class="logo2" fetchpriority="high" />
+      </div>
+      <div class="sec1">
+        <h1 class="title">WALLIX.</h1>
+        <h3>4K Wallpapers</h3>
+        <a href="#walls"><button class="glow-on-hover" type="button">Explore Walls</button></a>
+      </div>
+    </article>
+  </header>
+
+  <main>
+    <article id="walls" class="walls">
+      <div class="text-center">
+        <h1 class="title2">Categories</h1>
+      </div>
+      <div id="categories-container" class="container"></div>
+    </article>
+
+    <article id="contact" class="contact">
+      <div class="contact-cont">
+        <div class="contact-page">
+          <div class="text-center">
+            <h1 class="title2">Contact</h1>
+          </div>
+
+          <div class="contact-boxes">
+            <div class="contact-box">
+              <h2 class="box-title">
+                <i class="box-icon fa fa-home"></i> Location
+              </h2>
+              <div class="box-content">Dalian city, China</div>
+            </div>
+            <div class="contact-box">
+              <h2 class="box-title">
+                <i class="box-icon fa fa-envelope"></i> Email
+              </h2>
+              <div class="box-content">mrxff81@gmail.com</div>
+            </div>
+            <div class="contact-box">
+              <h2 class="box-title">
+                <i class="box-icon fa fa-phone"></i> Phone
+              </h2>
+              <div class="box-content">+86 123 4567 890</div>
+            </div>
+          </div>
+
+          <form id="contact-form" class="contact-form">
+            <input type="text" class="nameInput" placeholder="Name" required />
+            <input type="email" class="emailInput" placeholder="Email" required />
+            <input type="tel" class="subjectInput" placeholder="Number" />
+            <input type="text" class="subjectInput" placeholder="Subject" required />
+            <textarea class="msgArea" placeholder="Your Message" required></textarea>
+            <input class="sendbtn" type="submit" value="Send Message" />
+          </form>
+        </div>
+      </div>
+    </article>
+
+    <article id="about" class="about">
+      <div class="text-center">
+        <h1 class="title2">About</h1>
+      </div>
+      <div class="about-section">
+        <div class="cont">
+          <img class="min" src="./logo.png" alt="Wallix Logo" loading="lazy" />
+        </div>
+        <div class="social-menu">
+          <p>For more information visit our social media :</p>
+          <ul class="lister">
+            <li><a href="https://github.com/THE12X" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
+            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/mohamedkammou/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="mailto:mrxff81@gmail.com" aria-label="Email"><i class="fa fa-google"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
